@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchInput should match snapshot 1`] = `
+<styled.span
+  styles="
+    border: solid 2px theme.colors.offset;
+    border-radius: 5px;
+    overflow: hidden;
+"
+>
+  <styled.input
+    data-test-id="search"
+    onChange={[Function]}
+    placeholder="placeholder"
+    styles="
+    border: none;
+    height: 100%;
+    padding: 0 10px;
+"
+    type="text"
+    value="value"
+  />
+  <styled.button
+    data-test-id="clear"
+    disabled={false}
+    onClick={[Function]}
+    styles="
+    border: none;
+    height: 100%;
+    padding: 0 10px;
+"
+  >
+    x
+  </styled.button>
+</styled.span>
+`;
