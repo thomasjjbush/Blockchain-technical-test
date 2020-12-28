@@ -8,13 +8,7 @@ export const loadAddress = (address: string, multiplier: number): Action => asyn
         const res = await fetchData<Address>(`rawaddr/${address}`, { offset, limit: 10 });
         return dispatch({ type: AddressActions.LOADED, payload: res });
     } catch (err) {
-        // REMOVE THIS NESTED TRY CATCH
-        try {
-            const multiRes = await fetchData<any>('multiaddr', { active: address, offset, limit: 10 });
-            return dispatch({ type: AddressActions.LOADED, payload: { ...multiRes.addresses[0], txs: multiRes.txs } });
-        } catch (err) {
-            return dispatch({ type: AddressActions.ERROR });
-        }
+        return dispatch({ type: AddressActions.ERROR });
     }
 };
 
