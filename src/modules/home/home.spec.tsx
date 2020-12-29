@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { useSocket } from '../../hooks/use-socket';
 import Home from './home';
+import { useSelector } from 'react-redux';
 
 jest.mock('react-redux', () => ({
     useSelector: jest.fn().mockReturnValue({ latest_transactions: [{ hash: 'hash', size: 20 }] }),
@@ -27,5 +28,11 @@ describe('Home', () => {
             onMessage: 'home/LATEST_TRANSACTION',
             onOpen: 'unconfirmed_sub',
         });
+    });
+
+    it('should return error component if store contains error', () => {
+        (useSelector as jest.Mock).mockReturnValue({ error: true });
+        const wrapper = shallow(<Home />);
+        expect(wrapper.find('p').text()).toBe('error');
     });
 });

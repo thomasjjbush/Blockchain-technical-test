@@ -16,7 +16,7 @@ const Transactions = styled.div<StyledProps>`
 `;
 
 const Home: FC = (): ReactElement => {
-    const { latest_transactions } = useSelector<Store, Home>((state) => state.home);
+    const { error, latest_transactions } = useSelector<Store, Home>((state) => state.home);
 
     useSocket<HomeActions>('wss://ws.blockchain.info/inv', {
         onClose: 'unconfirmed_unsub',
@@ -25,6 +25,7 @@ const Home: FC = (): ReactElement => {
         onOpen: 'unconfirmed_sub',
     });
 
+    if (error) return <p>error</p>;
     return (
         <Transactions>
             <Title>Latest unconfirmed transactions</Title>
