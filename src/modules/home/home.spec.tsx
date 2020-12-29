@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { useSocket } from '../../hooks/use-socket';
 import Home from './home';
 import { useSelector } from 'react-redux';
+import { HomeActions } from '../../../types';
 
 jest.mock('react-redux', () => ({
     useSelector: jest.fn().mockReturnValue({ latest_transactions: [{ hash: 'hash', size: 20 }] }),
@@ -24,8 +25,8 @@ describe('Home', () => {
         expect(useSocket).toHaveBeenCalledTimes(1);
         expect(useSocket).toHaveBeenCalledWith('wss://ws.blockchain.info/inv', {
             onClose: 'unconfirmed_unsub',
-            onError: 'home/ERROR',
-            onMessage: 'home/LATEST_TRANSACTION',
+            onError: HomeActions.ERROR,
+            onMessage: HomeActions.LATEST_TRANSACTION,
             onOpen: 'unconfirmed_sub',
         });
     });
