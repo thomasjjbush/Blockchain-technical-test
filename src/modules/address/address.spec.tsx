@@ -5,6 +5,7 @@ import Address from './address';
 import { loadAddress } from './address.redux';
 import { MultiPageButtons } from '../../components/multi-page-buttons/multi-page-buttons';
 import { SearchInput } from '../../components/input/input';
+import { Transaction } from '../../components/transaction/transaction';
 
 jest.mock('react-router-dom', () => ({
     useLocation: jest.fn().mockReturnValue({ search: 'page=2' }),
@@ -82,11 +83,10 @@ describe('Address', () => {
 
         it('should filter based on hash', () => {
             const wrapper = shallow(<Address />);
-            expect(wrapper.find({ 'data-test-id': 'transaction' }).length).toBe(2);
+            expect(wrapper.find(Transaction).length).toBe(2);
 
             wrapper.find(SearchInput).prop('onChange')('SEARCHABLE');
-            expect(wrapper.find({ 'data-test-id': 'transaction' }).length).toBe(1);
-            expect(wrapper.find({ 'data-test-id': 'hash' }).find('span').text()).toBe('SEARCHABLE');
+            expect(wrapper.find(Transaction).length).toBe(1);
         });
 
         it('should pass the correct cb to multi page buttons component', () => {

@@ -8,7 +8,7 @@ jest.mock('../../utils/fetch/fetch-data', () => ({ fetchData: jest.fn().mockReso
 
 describe('Address redux', () => {
     const initialState = { tx_per_page: 10 };
-    let store: MockStoreEnhanced<Store, Dispatch>;
+    let store: MockStoreEnhanced<Partial<Store>, Dispatch>;
 
     beforeEach(() => {
         jest.clearAllMocks();

@@ -72,72 +72,18 @@ exports[`Address with data should match snapshot 1`] = `
       placeholder="Filter by hash"
       value=""
     />
-    <styled.div
-      data-test-id="transaction"
+    <Transaction
+      fee={10}
+      hash="24423423"
       key="24423423"
-      styles="
-    border-bottom: solid theme.colors.offset;
-"
-    >
-      <styled.h3
-        data-test-id="hash"
-        styles="
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    span {
-        background-color: theme.colors.brand;
-        color: white;
-    }
-"
-      >
-        Hash: 
-        24423423
-      </styled.h3>
-      <h3>
-        Fee: 
-        10
-      </h3>
-      <p>
-        1/1/1970
-         - 
-        01:01:52
-      </p>
-    </styled.div>
-    <styled.div
-      data-test-id="transaction"
+      search=""
+    />
+    <Transaction
+      fee={10}
+      hash="24423423SEARCHABLE"
       key="24423423SEARCHABLE"
-      styles="
-    border-bottom: solid theme.colors.offset;
-"
-    >
-      <styled.h3
-        data-test-id="hash"
-        styles="
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    span {
-        background-color: theme.colors.brand;
-        color: white;
-    }
-"
-      >
-        Hash: 
-        24423423SEARCHABLE
-      </styled.h3>
-      <h3>
-        Fee: 
-        10
-      </h3>
-      <p>
-        1/1/1970
-         - 
-        01:01:52
-      </p>
-    </styled.div>
+      search=""
+    />
     <MultiPageButtons
       currentPage={2}
       numberOfButtons={5}

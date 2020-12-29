@@ -18,7 +18,10 @@ const GlobalStyles = createGlobalStyle<StyledProps>`
     }
 `;
 
-const routes = [{ component: lazy(() => import('./../address/address')), path: '/address/:slug' }];
+const routes = [
+    { component: lazy(() => import('./../address/address')), path: '/address/:slug' },
+    { component: lazy(() => import('./../home/home')), path: '/' },
+];
 
 const theme = {
     colors: {

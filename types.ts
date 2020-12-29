@@ -3,7 +3,7 @@ import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { Json } from 'enzyme-to-json';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 
-export type Action = ThunkAction<Promise<AnyAction>, Store, unknown, AnyAction>;
+export type Action = ThunkAction<Promise<AnyAction> | AnyAction, Store, unknown, AnyAction>;
 
 export interface Address {
     address?: string;
@@ -25,6 +25,16 @@ export enum AddressActions {
 export type Dispatch = ThunkDispatch<Store, void, AnyAction>;
 
 export type FetchParams = Record<string, boolean | number | string>;
+
+export interface Home {
+    error?: boolean;
+    latest_transactions: Txs[];
+}
+
+export enum HomeActions {
+    ERROR = 'home/ERROR',
+    LATEST_TRANSACTION = 'home/LATEST_TRANSACTION',
+}
 
 export interface MultiPageButtonsProps {
     currentPage: number;
@@ -53,8 +63,16 @@ export interface SerializerMap extends Json {
     };
 }
 
+export interface SocketOptions<T> {
+    onClose: string;
+    onError: T;
+    onMessage: T;
+    onOpen: string;
+}
+
 export interface Store {
     address: Address;
+    home: Home;
 }
 
 export type StyledProps<Props = {}> = { theme: Theme } & Props;
@@ -66,13 +84,16 @@ export interface Theme {
     };
 }
 
+export interface TransactionProps extends Partial<Txs> {
+    search?: string;
+}
+
 export interface Txs {
     balance: number;
     fee: number;
     hash: string;
     result: number;
     size: number;
-    time: number;
 }
 
 export interface WebpackConfig {

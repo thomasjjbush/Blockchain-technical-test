@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should match snapshot 1`] = `
+<styled.div
+  styles="
+    background-color: white;
+    padding: 30px;
+    margin: 30px;
+"
+>
+  <styled.h1
+    styles="
+    color: theme.colors.brand;
+"
+  >
+    Latest unconfirmed transactions
+  </styled.h1>
+  <Transaction
+    hash="hash"
+    key="hash"
+    size={20}
+  />
+</styled.div>
+`;

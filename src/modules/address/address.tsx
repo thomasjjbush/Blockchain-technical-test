@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { loadAddress } from './address.redux';
 import { MultiPageButtons } from '../../components/multi-page-buttons/multi-page-buttons';
 import { SearchInput } from '../../components/input/input';
-import { highlightTerm } from '../../utils/highlight-term/highlight-term';
 import { Address, Store, StyledProps } from '../../../types';
+import { Transaction } from '../../components/transaction/transaction';
 
 const Block = styled.div`
     background-color: white;
@@ -24,24 +24,9 @@ const Container = styled.div`
     padding: 30px;
 `;
 
-const Hash = styled.h3<StyledProps>`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    span {
-        background-color: ${({ theme }): string => theme.colors.brand};
-        color: white;
-    }
-`;
-
 const Title = styled.h1<StyledProps>`
     color: ${(props): string => props.theme.colors.brand};
     margin: 0;
-`;
-
-const Transaction = styled.div<StyledProps>`
-    border-bottom: solid ${(props): string => props.theme.colors.offset};
 `;
 
 const Address: FC = (): ReactElement => {
@@ -79,18 +64,9 @@ const Address: FC = (): ReactElement => {
                 <SearchInput onChange={setSearch} placeholder="Filter by hash" value={search} />
                 {address.txs
                     .filter(({ hash }) => hash.includes(search))
-                    .map(({ fee, hash, time }) => {
-                        const date = new Date(time);
-                        return (
-                            <Transaction data-test-id="transaction" key={hash}>
-                                <Hash data-test-id="hash">Hash: {highlightTerm(hash, search)}</Hash>
-                                <h3>Fee: {fee}</h3>
-                                <p>
-                                    {date.toLocaleDateString()} - {date.toLocaleTimeString()}
-                                </p>
-                            </Transaction>
-                        );
-                    })}
+                    .map(({ fee, hash }) => (
+                        <Transaction key={hash} fee={fee} hash={hash} search={search} />
+                    ))}
                 <MultiPageButtons
                     currentPage={page}
                     numberOfButtons={5}

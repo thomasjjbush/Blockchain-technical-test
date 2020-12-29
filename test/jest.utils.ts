@@ -4,9 +4,9 @@ import { Dispatch, Store } from '../types';
 
 const initialState = { address: { tx_per_page: 10 } };
 
-export const mockStore = (state = {}): MockStoreEnhanced<Store> =>
-    configureMockStore<Store, Dispatch>([thunk])({ ...initialState, ...state });
+export const mockStore = (state = {}): MockStoreEnhanced<Partial<Store>> =>
+    configureMockStore<Partial<Store>, Dispatch>([thunk])({ ...initialState, ...state });
 
-export const runReducer = <T>(store: MockStoreEnhanced<Store>, reducer: any, initialState?: Partial<T>): T => {
+export const runReducer = <T>(store: MockStoreEnhanced<Partial<Store>>, reducer: any, initialState?: Partial<T>): T => {
     return store.getActions().reduce(reducer, initialState);
 };
